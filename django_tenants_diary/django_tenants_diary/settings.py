@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'diary.User'
+
 WSGI_APPLICATION = 'django_tenants_diary.wsgi.application'
 
 
