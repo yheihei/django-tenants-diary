@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports: 
+      - "5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: ./django_tenants_diary
+    command: >
+      python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django_tenants_diary:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
