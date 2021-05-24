@@ -33,22 +33,34 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-SHARED_APPS = [
+SHARED_APPS = (
     'django_tenants',  # mandatory
     'tenants',  # you must list the app where your tenant model resides in
-]
+    'django.contrib.contenttypes',
+
+    # everything below here is optional
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+
+    'user',
+)
 
 TENANT_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.admin',
     'django.contrib.staticfiles',
+
+    'user',
     'diary',
 ]
 
-INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
@@ -79,7 +91,7 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'diary.User'
+AUTH_USER_MODEL = 'user.User'
 
 WSGI_APPLICATION = 'django_tenants_diary.wsgi.application'
 
@@ -134,6 +146,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SITE_ID = 1
 
 
 # Static files (CSS, JavaScript, Images)
