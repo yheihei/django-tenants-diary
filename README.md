@@ -22,7 +22,7 @@ PostgreSQLのschema機能を使って、クライアントごとに日記デー�
 というような運用になる。 
 
 ### ER図  
-![マルチテナント日記アプリER図](doc/images/er.jpg)
+![マルチテナント日記アプリER図](doc/images/er.png)
 
 ## 環境構築方法
 ### コンテナの初期化
