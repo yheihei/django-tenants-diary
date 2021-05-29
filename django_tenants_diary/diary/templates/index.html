@@ -3,7 +3,11 @@
     <title>とあるエンジニアの日記帳</title>
   </head>
   <body>
+    {% load static %}
     <h1>とあるエンジニアの日記帳</h1>
+    <a href="#">
+      <img style="width:360px;" src="{% static "images/sample_ad.jpg" %}">
+    </a>
     {% for post in posts %}
       <div>
         <h2>{{ post.title }}</h2>
