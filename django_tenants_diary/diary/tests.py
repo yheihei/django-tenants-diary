@@ -44,3 +44,9 @@ class IndexPageTest(TenantTestCase):
     self.assertEqual(2, len(response.context['posts']))
     self.assertEqual('日記1', response.context['posts'][0].title)
     self.assertEqual('<p>日記だよ', response.context['posts'][0].body)
+
+  def test_is_admin_post(self):
+    '''ログイン後、日記一覧のadminページを開くことができる'''
+    self.c.force_login(User.objects.get(id=1)) # force_loginにユーザーオブジェクトを入れればログイン済みに
+    response = self.c.get('/admin/diary/post/') # 日記一覧のadminに遷移
+    self.assertEqual(200, response.status_code) # 表示できなかった場合302でログインページにリダイレクト
