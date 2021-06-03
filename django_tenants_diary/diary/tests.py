@@ -41,5 +41,6 @@ class IndexPageTest(TenantTestCase):
   def test_is_post(self):
     '''トップページを開いた際日記コンテンツが表示されていること'''
     response = self.c.get(reverse('diary:index'))
+    self.assertEqual(2, len(response.context['posts']))
     self.assertEqual('日記1', response.context['posts'][0].title)
     self.assertEqual('<p>日記だよ', response.context['posts'][0].body)
