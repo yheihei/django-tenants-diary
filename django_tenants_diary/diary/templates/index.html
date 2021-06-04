@@ -17,11 +17,13 @@
         <div>投稿 : {{ post.user }}</div>
         <div>{{ post.body |safe }}</div>
         <div>{{ post.updated_at }}</div>
-        <div>カテゴリー : 
-        {% for category in post.categories.all %}
-          <span>{{ category }},</span>
-        {% endfor %}
-        </div>
+        {% if is_category_function == True %}
+          <div>カテゴリー : 
+            {% for category in post.categories.all %}
+              <span>{{ category }},</span>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     {% empty %}
       <p>No Diaries.</p>
