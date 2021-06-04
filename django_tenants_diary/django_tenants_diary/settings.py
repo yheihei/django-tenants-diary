@@ -46,6 +46,7 @@ SHARED_APPS = (
     'django.contrib.admin',
 
     'user',
+    'function_setting',
 )
 
 TENANT_APPS = [
